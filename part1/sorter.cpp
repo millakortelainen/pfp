@@ -12,24 +12,20 @@ int main(int argc, char *argv[])
 {
   string fileName = argv[1];
   vector<uint64_t> *array = ReadFile<uint64_t>(fileName);
-
+  vector<uint64_t> *differences = new vector<uint64_t>((array->size() - 1));
   sort(array->begin(), array->end());
-  ofstream write_output(file_name += ".sorted.vb", ios::binary);
-  for (int j = 1; j < n; j++)
+  for (int j = 1; j < array->size(); j++)
   {
-    int diff = array[j] - array[j - 1];
-    while (true)
-    {
-      int b = fmod(diff, 128);
-      if (diff < 128)
-      {
-        b = b + 128;
-        write_output << char(b);
-        break;
-      }
-      write_output << char(b);
-      diff = diff / 128;
-    }
+    uint64_t diff = array->at(j) - array->at(j - 1);
+    differences->at(j - 1) = diff;
   }
-  write_output.close();
+#ifdef DEBUG
+  for (int i = 0; i < 5; i++)
+  {
+    cout << "array: " << array->at(i) << "\n";
+    cout << "diff: " << differences->at(i) << "\n";
+  }
+#endif
+  vector<uint8_t> *encodedContent = VByteEncoding(differences);
+  WriteFile<uint8_t>(encodedContent, (fileName + ".sorted.vb"));
 }
