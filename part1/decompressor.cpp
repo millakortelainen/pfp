@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     vector<uint8_t> *content = ReadFile<uint8_t>(fileName);
 
     vector<uint64_t> *decodedContent = VByteDecoding(content);
+    delete content;
 #ifdef DEBUG
     for (int i = 0; i < 7; i++)
     {
@@ -20,5 +21,6 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    WriteFile<uint64_t>(decodedContent, fileName + ".dec");
+    WriteFile<uint64_t, true>(decodedContent, fileName + ".dec");
+    delete decodedContent;
 }

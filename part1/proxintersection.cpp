@@ -38,6 +38,7 @@ int main(int argc, char const *argv[])
     int r1 = 2;
     cout << "this should be 4 : " << CalculateIntersection(&v1, &v2, r1) << "\n";
 #endif
+
     auto start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < pairs->size(); i++)
     {
@@ -45,11 +46,13 @@ int main(int argc, char const *argv[])
         string fileNameA = "F" + to_string(get<0>(pairs->at(i))) + ".vb";
         vector<uint8_t> *fileContentA = ReadFile<uint8_t>(fileNameA);
         vector<uint64_t> *decodedFileContentA = VByteDecoding(fileContentA);
+        delete fileContentA;
         sort(decodedFileContentA->begin(), decodedFileContentA->end());
 
         string fileNameB = "F" + to_string(get<1>(pairs->at(i))) + ".vb";
         vector<uint8_t> *fileContentB = ReadFile<uint8_t>(fileNameB);
         vector<uint64_t> *decodedFileContentB = VByteDecoding(fileContentB);
+        delete fileContentB;
         sort(decodedFileContentB->begin(), decodedFileContentB->end());
 
 #ifdef DEBUG
@@ -62,10 +65,12 @@ int main(int argc, char const *argv[])
 #endif
 
         int intersectionSize = CalculateIntersection(decodedFileContentA, decodedFileContentB, radius);
-
-        cout << fileNameA << " and " << fileNameB << " intersections size is "<< intersectionSize << ".\n";
+        delete decodedFileContentA;
+        delete decodedFileContentB;
+        cout << fileNameA << " and " << fileNameB << " intersections size is " << intersectionSize << ".\n";
     }
     auto end = std::chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed_seconds = end - start;
     cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+    delete pairs;
 }
