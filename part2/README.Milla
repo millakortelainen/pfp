@@ -1,0 +1,5 @@
+bit.cpp
+compile:
+g++ -std=c++17 -Ofast bit.cpp -o bit
+run:
+./bit
