@@ -1,0 +1,55 @@
+This folder contains
+
+compressor.cpp
+Program that compresses file to VByte file
+compile:
+g++ -std=c++17 -Ofast compressor.cpp -o compressor
+run:
+./compressor Fi
+where i is the number of the file.
+
+decompressor.cpp
+Program that decompresses VByte file
+compile:
+g++ -std=c++17 -Ofast decompressor.cpp -o decompressor
+run:
+./decompressor Fi.vb
+where i is the number of the file.
+
+sorter.cpp
+Program that takes original file, sorts it, takes differences from adjacent elements and then saves those differences in VByte code:
+compile:
+g++ -std=c++17 -Ofast sorter.cpp -o sorter
+run:
+./sorter Fi
+where i is the number of the file.
+
+proxintersection.cpp
+Program that calculates proximity intersection for the pairs in the text file:
+compile:
+g++ -std=c++17 -Ofast proxintersection.cpp -o proxintersection
+run:
+./proxintersection X TEMP.txt
+where X is radius as an integer and TEMP.txt is a text file of pairs.
+
+Utils.hpp
+Helper file to previous programs. Cannot be compiled or run separately.
+
+testCompressor2.cpp
+Program that compresses file to VByte file by reading one integer at time and compressing it to VByte code
+compile:
+g++ -std=c++17 -Ofast testCompressor2.cpp -o testCompressor2
+run:
+./testCompressor2 Fi
+where i is the number of the file.
+
+testCompressor3.cpp
+Program that compresses file to VByte file by reading 1024 integers at time and compressing them to VByte code
+compile:
+g++ -std=c++17 -Ofast testCompressor3.cpp -o testCompressor3
+run:
+./testCompressor3 Fi
+where i is the number of the file.
+
+report1.pdf
+My report of the assignment 1.
