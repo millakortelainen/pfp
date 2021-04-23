@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
 {
     // construct a instance of BitArray class from user input
     string size = argv[1];
-    int n = stoi(size);
+    uint n = stoi(size);
 
     BitArray ba(n);
 #ifdef DEBUG
@@ -24,8 +24,11 @@ int main(int argc, char const *argv[])
     uint64_t m = 4096;
     vector<int> *rn = GenerateRandomNumbers(m, n);
     SetValues(rn, m, n, &ba);
+    cout << "sum was\n";
+    cout << ba.sum(10) << "\n";
     GetValues(rn, m, n, &ba);
     delete rn;
+    /*
     ba.clear();
 
     m = 32768;
@@ -68,8 +71,7 @@ int main(int argc, char const *argv[])
     SetValues(rn, m, n, &ba);
     GetValues(rn, m, n, &ba);
     delete rn;
-    ba.clear();
-
+*/
 #ifdef DEBUG
 
     //for (int y = 0; y < m; y++)

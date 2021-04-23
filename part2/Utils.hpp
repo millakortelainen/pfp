@@ -10,7 +10,7 @@ vector<int> *GenerateRandomNumbers(uint64_t m, int n)
 {
     vector<int> *randomNumbers = new vector<int>(m);
     mt19937 g(random_device{}());
-    uniform_int_distribution<int> d(0, n);
+    uniform_int_distribution<int> d(0, n - 1);
     for (size_t i = 0; i < m; i++)
     {
         randomNumbers->at(i) = d(g);
@@ -18,7 +18,7 @@ vector<int> *GenerateRandomNumbers(uint64_t m, int n)
     return randomNumbers;
 }
 
-void SetValues(vector<int> *rn, uint64_t m, int n, BitArray* ba)
+void SetValues(vector<int> *rn, uint64_t m, int n, BitArray *ba)
 {
     auto start = std::chrono::high_resolution_clock::now();
 
@@ -33,8 +33,7 @@ void SetValues(vector<int> *rn, uint64_t m, int n, BitArray* ba)
     cout << "\n";
 }
 
-
-void GetValues(vector<int> *rn, uint64_t m, int n, BitArray* ba)
+void GetValues(vector<int> *rn, uint64_t m, int n, BitArray *ba)
 {
     auto start = std::chrono::high_resolution_clock::now();
 

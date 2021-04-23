@@ -7,18 +7,27 @@ using namespace std;
 
 class BitArray
 {
-    int n;
+    uint n;
     uint64_t *bitarray;
+    uint t = 1;
+    uint64_t *partialsums;
+    uint n2;
 
 public:
-    BitArray(int n);
+    BitArray(uint n);
     ~BitArray();
     void print()
     {
+        cout << "bitarray:\n";
         for (int i = 0; i < n; i++)
         {
             bitset<64> y(bitarray[i]);
             cout << y << "\n";
+        }
+        cout << "partialsums:\n";
+        for (size_t j = 0; j < n2; j++)
+        {
+            cout << partialsums[j] << "\n";
         }
     }
     void set(uint i, uint64_t b)
@@ -35,6 +44,13 @@ public:
         else
         {
             shift = b << r;
+            if (get(i) != 1)
+            {
+                for (size_t k = (i / t); k < n2; k++)
+                {
+                    partialsums[k]++;
+                }
+            }
             bitarray[row] = value | shift;
         }
     }
@@ -54,9 +70,17 @@ public:
             bitarray[i] = 0;
         }
     }
+
+    uint64_t sum(const uint64_t i)
+    {
+        uint c = (i / t);
+        uint64_t r = (i % t);
+        uint64_t f = partialsums[c];
+        return f;
+    }
 };
 
-BitArray::BitArray(int i)
+BitArray::BitArray(uint i)
 {
     uint64_t remainder = i % 64;
     if (remainder == 0)
@@ -69,6 +93,8 @@ BitArray::BitArray(int i)
     }
 
     bitarray = new uint64_t[n]();
+    n2 = (i / t);
+    partialsums = new uint64_t[n2]();
 
     /* for (int j = 0; j < (i / 64); j++)
     {
