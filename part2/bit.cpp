@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
     vector<int> *rn = GenerateRandomNumbers(m, n);
     SetValues(rn, m, n, &ba);
     cout << "sum was\n";
-    cout << ba.sum(10) << "\n";
+    cout << ba.sum(8) << "\n";
     GetValues(rn, m, n, &ba);
     delete rn;
     /*

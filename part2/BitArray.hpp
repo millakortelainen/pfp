@@ -9,7 +9,7 @@ class BitArray
 {
     uint n;
     uint64_t *bitarray;
-    uint t = 1;
+    uint t = 5;
     uint64_t *partialsums;
     uint n2;
 
@@ -73,9 +73,37 @@ public:
 
     uint64_t sum(const uint64_t i)
     {
+        //index of the partial
         uint c = (i / t);
+        //remainder of the partial sum (i = c*t+r)
         uint64_t r = (i % t);
-        uint64_t f = partialsums[c];
+        //get the partial sum to closest index
+        uint64_t f = 0;
+
+        cout << "r:" << r << "\n";
+
+        //if the division was even then return the partialsum
+        if (r == 0)
+        {
+            if (i == 0)
+            {
+                return get(0);
+            }
+            return partialsums[c - 1];
+        }
+
+        if (r != 0)
+        {
+            if (i > t)
+            {
+                f += partialsums[c-1];
+            }
+            for (uint64_t j = (c * t); j < i; j++)
+            {
+                f += get(j);
+            }
+        }
+
         return f;
     }
 };
