@@ -9,7 +9,7 @@ class BitArray
 {
     uint n;
     uint64_t *bitarray;
-    uint t = 5;
+    uint t = 64;
     uint64_t *partialsums;
     uint n2;
 
@@ -80,8 +80,6 @@ public:
         //get the partial sum to closest index
         uint64_t f = 0;
 
-        cout << "r:" << r << "\n";
-
         //if the division was even then return the partialsum
         if (r == 0)
         {
@@ -91,21 +89,27 @@ public:
             }
             return partialsums[c - 1];
         }
-
-        if (r != 0)
+        else
         {
             if (i > t)
             {
-                f += partialsums[c-1];
+                f += partialsums[c - 1];
             }
             for (uint64_t j = (c * t); j < i; j++)
             {
-                f += get(j);
+                //f += get(j);
             }
+            uint64_t left = 64 - r;
+            uint64_t shift_left = bitarray[i / 64] << left;
+            bitset<64> a(shift_left);
+            cout << a << "\n";
+            f += __builtin_popcountl(shift_left);
         }
 
         return f;
     }
+
+    void set_t_value(uint x) { t = x; }
 };
 
 BitArray::BitArray(uint i)
@@ -137,4 +141,5 @@ BitArray::BitArray(uint i)
 BitArray::~BitArray()
 {
     delete bitarray;
+    delete partialsums;
 }

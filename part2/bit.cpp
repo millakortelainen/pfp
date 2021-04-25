@@ -73,12 +73,40 @@ int main(int argc, char const *argv[])
     delete rn;
 */
 #ifdef DEBUG
+    //for testing
+    cout << "***TESTING THE SUM***\n";
 
-    //for (int y = 0; y < m; y++)
-    //{
-    //    cout << rn->at(y) << ",";
-    // }
-    //cout << "\n";
-    ba.print();
+    BitArray test1(10);
+    test1.set(0, 1);
+    test1.set(5, 1);
+    test1.set(9, 1);
+    uint64_t test1_sum = test1.sum(10);
+    cout << "this should be 3: " << test1_sum << "\n";
+
+    BitArray test2(100);
+    test2.set(99, 1);
+    for (size_t i = 22; i < 32; i++)
+    {
+        test2.set(i, 1);
+    }
+    uint64_t test2_sum = test2.sum(10);
+    cout << "this should be 0: " << test2_sum << "\n";
+    uint64_t test2_sum2 = test2.sum(30);
+    cout << "this should be 8: " << test2_sum2 << "\n";
+    uint64_t test2_sum3 = test2.sum(100);
+    cout << "this should be 11: " << test2_sum3 << "\n";
+
+    BitArray test3(156);
+    for (size_t i = 60; i < 80; i++)
+    {
+        test3.set(i, 1);
+    }
+    uint64_t test3_sum = test3.sum(64);
+    cout << "this should be 4: " << test3_sum << " \n";
+    uint64_t test3_sum2 = test3.sum(156);
+    cout << "this should be 20:" << test3_sum2 << "\n";
+
+    cout << "***TESTING THE SUM ENDED***\n";
+    cout << __builtin_popcount (6) << "\n";
 #endif
 }
