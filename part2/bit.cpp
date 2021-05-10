@@ -28,7 +28,6 @@ int main(int argc, char const *argv[])
     cout << ba.sum(8) << "\n";
     GetValues(rn, m, n, &ba);
     delete rn;
-    /*
     ba.clear();
 
     m = 32768;
@@ -71,7 +70,6 @@ int main(int argc, char const *argv[])
     SetValues(rn, m, n, &ba);
     GetValues(rn, m, n, &ba);
     delete rn;
-*/
 #ifdef DEBUG
     //for testing
     cout << "***TESTING THE SUM***\n";

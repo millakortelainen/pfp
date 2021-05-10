@@ -95,14 +95,8 @@ public:
             {
                 f += partialsums[c - 1];
             }
-            for (uint64_t j = (c * t); j < i; j++)
-            {
-                //f += get(j);
-            }
             uint64_t left = 64 - r;
             uint64_t shift_left = bitarray[i / 64] << left;
-            bitset<64> a(shift_left);
-            cout << a << "\n";
             f += __builtin_popcountl(shift_left);
         }
 
@@ -128,14 +122,6 @@ BitArray::BitArray(uint i)
     n2 = (i / t);
     partialsums = new uint64_t[n2]();
 
-    /* for (int j = 0; j < (i / 64); j++)
-    {
-        bitarray[j] = ~0;
-    }
-    if (remainder > 0)
-    {
-        bitarray[n - 1] = (uint64_t(1) << remainder) - 1;
-    }*/
 }
 
 BitArray::~BitArray()

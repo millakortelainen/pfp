@@ -1,5 +1,16 @@
+Main programs:
+
 bit.cpp
 compile:
 g++ -std=c++17 -Ofast bit.cpp -o bit
 run:
-./bit
+./bit n
+where n is the lengt of bit array.
+
+packedintarray.cpp
+compile:
+g++ -std=c++17 -Ofast packedintarray.cpp -o packedintarray
+run:
+./packedintarray n k
+where n is the length of the packed integer array, k is the bit-width of each integer in the packed integerarray
+
