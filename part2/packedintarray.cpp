@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
     uint int_n = stoi(n);
     uint int_k = stoi(k);
 
-    uint64_t power_of_k = 1 << int_k;
+    uint64_t power_of_k = (1 << int_k)-1;
 
     PackedIntegerArray pia(int_n, int_k);
 
